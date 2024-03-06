@@ -48,7 +48,7 @@ const SignUpForm = () => {
 
     const session = await signInAccount({
       email: values.email,
-      password: values.password
+      password: values.password,
     });
 
     if (!session) {
@@ -86,7 +86,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input type="text" className="shad-input" {...field} />
+                    <Input type="text" className="shad-input" {...field} autoComplete="name" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -99,7 +99,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input type="text" className="shad-input" {...field} />
+                    <Input type="text" className="shad-input" {...field} autoComplete="username" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -112,7 +112,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input type="email" className="shad-input" {...field} />
+                    <Input type="email" className="shad-input" {...field} autoComplete="email" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

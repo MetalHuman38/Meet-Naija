@@ -10,7 +10,7 @@ import { INewUser } from '@/types'
 
 export const useCreateUserAccount = () => {
   return useMutation({
-    mutationFn: (user: INewUser) => createUserAccount(user),
+    mutationFn: (user: INewUser) => createUserAccount(user)
   })
 }
 

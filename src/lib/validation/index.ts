@@ -5,4 +5,10 @@ export const SignUpValidation = z.object({
   username: z.string().min(2, { message: "Username is too short" }),
   email: z.string().email({ message: "Invalid email" }),
   password: z.string().min(8, { message: "Password is too short" }),
+})
+
+
+export const SignInValidation = z.object({
+  email: z.string().email({ message: "Invalid email" }),
+  password: z.string().min(8, { message: "Password is too short" }),
   })

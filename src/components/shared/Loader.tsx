@@ -2,9 +2,12 @@ const Loader = () => {
   return (
     <div className="flex-center w-full">
       <img src="/assets/icons/loader.svg"
-        alt="Loading..."
+        alt="Loader"
         width={24}
-        height={24}/>
+        height={24}
+        className="animate-spin"
+      />
+
     </div>
   )
 }

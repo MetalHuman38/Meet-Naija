@@ -10,7 +10,7 @@ export async function createUserAccount(user: INewUser) {
       ID.unique(),
       user.email,
       user.password,
-      user.name,
+      user.name
     );
 
     if (!newAccount) throw new Error;
@@ -19,8 +19,8 @@ export async function createUserAccount(user: INewUser) {
 
     const newUser = await saveUserToDB({
       accountId: newAccount.$id,
-      name: newAccount.email,
-      email: newAccount.name,
+      name: newAccount.name,
+      email: newAccount.email,
       username: user.username,
       imageUrl: avatarUrl,
     });
@@ -65,7 +65,8 @@ export async function signInAccount(user: {email: string; password: string;}) {
 export async function getCurrentUser() {
   try {
     const currenAccount = await account.get();
-    if (!currenAccount) throw new Error('No user found');
+
+    if (!currenAccount) throw new Error;
 
     const currentUser = await database.listDocuments(
       appwriteConfig.databaseId,
@@ -73,7 +74,7 @@ export async function getCurrentUser() {
       [Query.equal("accountId", currenAccount.$id)]
     );
 
-    if (!currentUser) throw new Error;
+    if (!currentUser) throw Error;
 
     return currentUser.documents[0];
   } catch (error) {
