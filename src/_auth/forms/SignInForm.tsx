@@ -16,12 +16,10 @@ import { useUserContext } from "@/context/AuthContext";
 
 const SignInForm = () => {
   const { toast } = useToast()
-
+  const navigate = useNavigate();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
 
-  const navigate = useNavigate(); // 3. Use the `useNavigate` hook to redirect the user to the dashboard after sign up.
-
-
+  // Query and Mutation
   const { mutateAsync: signInAccount } = useSignInAccount();
 
   // 1. Define your form.

@@ -57,6 +57,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     } finally {
       setIsLoading(false);
     }
+
     return isAuthenticated;
   };
 
