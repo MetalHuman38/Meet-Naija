@@ -2,6 +2,7 @@ import {ID, Query} from 'appwrite';
 import { INewPost, INewUser } from "@/types";
 import { account, appwriteConfig, avatars, database, storage } from './config';
 
+
 // Create User Account
 export async function createUserAccount(user: INewUser) {
 
@@ -189,6 +190,61 @@ export async function getRecentPosts() {
     if (!posts) throw Error;
 
     return posts;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Get User Posts
+export async function likePost(postId: string, likesArray: string[]) {
+  try {
+    const updatedPost = await database.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      postId,
+      {
+        likes: likesArray,
+      }
+    );
+
+    if (!updatedPost) throw Error;
+    return updatedPost;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Get User saved Posts
+export async function savedPost(postId: string, userId: string) {
+  try {
+    const updatedPost = await database.createDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.savesCollectionId,
+      ID.unique(),
+      {
+        user: userId,
+        post: postId,
+      }
+    );
+
+    if (!updatedPost) throw Error;
+
+    return updatedPost;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// Get User saved Posts
+export async function deleteSavedPost(savedRecordId: string) {
+  try {
+    const statusCode = await database.deleteDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.savesCollectionId,
+      savedRecordId,
+    );
+    if (!statusCode) throw Error;
+    return {status: 'success'};
   } catch (error) {
     console.log(error);
   }
